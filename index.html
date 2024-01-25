@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Celebration</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="notes-container"></div>
+
+    <div id="typewriter" class="monospace-text"></div>
+
+    <button id="birthday-cake" onclick="cakeClick()">
+        <img src="cake.svg" height="100%"></img>
+    </button>
+
+    <script src="SongPlayer.js"></script>
+    <script src="NoteVisualizer.js"></script>
+    <script src="Typeweriter.js"></script>
+    <script src="CodeString.js"></script>
+    <script src="BirthdaySong.js"></script>
+
+    <script>
+        var cakeClickable = false;
+        var ClickCount = 0;
+
+        function showCake(){
+            document.getElementById("birthday-cake").style.display = "block";
+        }
+        
+        function firstClick(){
+            const instructions = [
+                { text: "‎", speed: 20, commands: "delay: 4, backspace, delay: 2"},
+                { text: "Happy birthday, Tiffany!!! ^_^", speed: 50, commands: "delay: 4"},
+                { text: "\n\nAnd yes, that was the actual code responsible for playing this MIDI music.", speed: 50, commands: "delay: 3"},
+                { text: "\nIt was also, without a doubt, me writing the code in real-time.", speed: 50, commands: "delay: 1"},
+                { text: " Absolutely.", speed: 50, commands: "delay: 1"},
+                { text: " No doubt about it.", speed: 50, commands: "delay: 1"},
+                { text: "\nDefinitely not a script writing it character by character.", speed: 50, commands: "delay: 2"},
+                { text: "\nI'm just that fast! B)", speed: 50, commands: "delay: 20, clear, delay: 1"},
+                //comment if music stopped.
+                { text: "Anyway,", speed: 50, commands: "delay: 1, clear, delay: 1"},
+                { text: " ____  ____      __      ______   ______   ____  ____     ______   _____ _______    _________ ____  ____ ________        __      ____  ____ \n|_   ||   _|    /  \\    |_   __ \\|_   __ \\|_  _||_  _|   |_   _ \\ |_   _|_   __ \\  |  _   _  |_   ||   _|_   ___ \\.     /  \\    |_  _||_  _|\n  | |__| |     / /\\ \\     | |__) | | |__) | \\ \\  / /       | |_) |  | |   | |__) | |_/ | | \\_| | |__| |   | |   \\. \\   / /\\ \\     \\ \\  / /  \n  |  __  |    / ____ \\    |  ___/  |  ___/   \\ \\/ /        |  __/.  | |   |  __ /      | |     |  __  |   | |    | |  / ____ \\     \\ \\/ /   \n _| |  | |_ _/ /    \\ \\_ _| |_    _| |_      _|  |_       _| |__) |_| |_ _| |  \\ \\_   _| |_   _| |  | |_ _| |___.' /_/ /    \\ \\_   _|  |_   \n|____||____|____|  |____|_____|  |_____|    |______|     |_______/|_____|____| |___| |_____| |____||____|________.'|____|  |____| |______|  ", speed: 0, commands: "delay: 1"}
+            ];
+
+            typeWriter(instructions, 'typewriter');
+        }
+
+        function cakeClick(){
+            if (!cakeClickable)
+                return;
+
+            if (ClickCount == 0)
+                firstClick();
+
+            ClickCount++
+            
+            playBirthdaySong();
+        }
+    </script>
+
+    <script>
+        const instructions = [
+            { text: "‎", speed: 1, commands: "delay: 1" },
+            { text: "Oh, ", speed: 50, commands: "delay: 1" },
+            { text: "hey Tiffany!", speed: 50, commands: "delay: 2" },
+            { text: "\nYou're here earlier than expected.", speed: 50, commands: "delay: 2" },
+            { text: "\nI haven't finished the gift quite yet...", speed: 50, commands: "delay: 2" },
+            { text: "\nLet me whip something up real quick.", speed: 50, commands: "delay: 2, backspace" },
+            { text: code + "\n//", speed: 20, commands: "delay: 1"},
+            { text: "• ", speed: 1, commands: "delay: 2"},
+            { text: "• ", speed: 1, commands: "delay: 2"},
+            { text: "•", speed: 1, commands: "delay: 2, backspace: 5, delay: 1"},
+            { text: "That should do it.", speed: 50, commands: "delay: 2, clear, delay: 2"},
+            { text: "Now, let's quickly add some visuals.", speed: 50, commands: "delay: 1, backspace, delay: 1"},
+            { text: "<button id=\"birthday-cake\" onclick=\"cakeClick()\">\n    <img src=\"cake.svg\"> height=\"100%\"</img>\n</button>", speed: 20, commands: "delay: 2, clear, function: showCake, delay: 1"},
+            { text: "There we go.", speed: 50, commands: "delay: 1"},
+            { text: "\nTry clicking on the cake.", speed: 50, commands: "true: cakeClickable, delay: 2"}
+        ];
+
+        typeWriter(instructions, 'typewriter');
+    </script>
+
+    <script>
+        function calculateFontSize() {
+            const container = document.getElementById("typewriter");
+            const targetCharacters = 140;
+
+            // Calculate the font size dynamically
+            const fontSize = (container.clientWidth / targetCharacters) * 1.66;
+
+            // Apply the calculated font size to the container
+            container.style.fontSize = `${fontSize}px`;
+        }
+
+        // Call the function on page load
+        calculateFontSize();
+
+        // Optionally, you can recalculate on window resize
+        window.addEventListener("resize", calculateFontSize);
+    </script>
+</body>
+</html>
