@@ -16,7 +16,7 @@ function playMusic(notes) {
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
 
-        oscillator.type = 'triangle'; // You can change this to 'square', 'triangle', or 'sawtooth'
+        oscillator.type = 'triangle';
         oscillator.frequency.setValueAtTime(frequency, currentTime + note.startTime);
 
         gainNode.gain.setValueAtTime(0, currentTime + note.startTime);
